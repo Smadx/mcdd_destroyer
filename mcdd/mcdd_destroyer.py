@@ -30,7 +30,7 @@ class mcdd_destroyer(nn.Module):
 
         # 确保输入图片的形状正确
         assert image.shape == (1, 1, 28, 28), "Input image shape is incorrect"
-        
+
         # 处理单张图片
         with torch.no_grad():
             output = self.model(image)  # 使用内部模型获取输出
