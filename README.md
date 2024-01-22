@@ -32,6 +32,7 @@ python eval.py --data-path your_data_path --results-path your_results_path
 
 Save the images you want to detect in the ``data`` folder(default).   
 Then find the ``model.pt`` file in the ``results`` folder(default).It may be ``mcdd\results\test1\model.pt``,for example.  
+When the model returns 1 means that the image contains mcdd, and 0 means that the image does not contain mcdd.
 Then, run the following command:
 
 ```bash
