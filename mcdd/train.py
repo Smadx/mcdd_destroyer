@@ -1,5 +1,4 @@
 import argparse
-from argparse import BooleanOptionalAction
 
 import torch
 import yaml
@@ -27,7 +26,7 @@ def main():
 
     # Training
     parser.add_argument("--batch-size", type=int, default=64)
-    parser.add_argument("--lr", type=float, default=1e-4)
+    parser.add_argument("--lr", type=float, default=1e-3)
     parser.add_argument("--seed", type=int, default=12345)
     parser.add_argument("--results-path", type=str, default=None)
     parser.add_argument("--data-path", type=str, default=None)
@@ -94,7 +93,11 @@ class Trainer:
         if not os.path.exists(checkpoint_dir):
             os.makedirs(checkpoint_dir)
 
-        torch.save(self.model.state_dict(), checkpoint_path)
+        checkpoint = {
+            "model": self.accelerator.get_state_dict(self.model),
+            "opt": self.opt.state_dict(),
+        }
+        torch.save(checkpoint, checkpoint_path)
         log(f"Saved model to {checkpoint_path}")
 
 if __name__ == "__main__":

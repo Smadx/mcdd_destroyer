@@ -61,6 +61,8 @@ class Evaluator:
         self.eval_path.mkdir()
         self.checkpoint_path = self.path / "model.pt"
 
+        self.load_checkpoint()
+
     def load_checkpoint(self):
         data = torch.load(self.checkpoint_path)
         log(f"Loading checkpoint from {self.checkpoint_path}")

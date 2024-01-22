@@ -45,7 +45,6 @@ def make_dataloader(path: str, batch_size: int, k: float)-> DataLoader:
         transforms.Grayscale(num_output_channels=1),
         transforms.Resize((28, 28)),
         transforms.ToTensor(),
-        transforms.Normalize((0.5,), (0.5,))
     ])
     dataset = datasets.ImageFolder(root=path, transform=transform)
     n = len(dataset)
