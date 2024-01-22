@@ -11,6 +11,7 @@ from accelerate import Accelerator
 from typing import Optional
 from datetime import datetime
 from pathlib import Path
+from PIL import Image
 
 _accelerator: Optional[Accelerator] = None
 
@@ -54,6 +55,18 @@ def make_dataloader(path: str, batch_size: int, k: float)-> DataLoader:
     train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True)
     val_loader = DataLoader(val_set, batch_size=batch_size, shuffle=True)
     return train_loader, val_loader
+
+def make_single_image(path:str)-> torch.Tensor:
+    """
+    把path中的图片(只有一张)转换为tensor
+    """
+    transform = transforms.Compose([
+        transforms.Grayscale(num_output_channels=1),
+        transforms.Resize((28, 28)),
+        transforms.ToTensor(),
+    ])
+    image = transform(Image.open(path))
+    return image
 
 def get_date_str():
     return datetime.now().strftime("%Y-%m-%d_%H-%M-%S")

@@ -36,7 +36,7 @@ def main():
     model = ConvnetMcdd()
     print_model_summary(model, batch_size=cfg.batch_size, shape=(1, 28, 28))
     train_loader, val_loader = make_dataloader(cfg.data_path, cfg.batch_size, 0.8)
-    destroyer = mcdd_destroyer(model, cfg, image_shape=(1, 28, 28))
+    destroyer = mcdd_destroyer(model, image_shape=(1, 28, 28))
     Evaluator(
         destroyer,
         train_loader,

@@ -3,10 +3,9 @@ from torch import nn
 
 # 搭建一个卷积神经网络,处理图像二分类任务
 class mcdd_destroyer(nn.Module):
-    def __init__(self, model, cfg, image_shape):
+    def __init__(self, model, image_shape):
         super().__init__()
         self.model = model
-        self.cfg = cfg
         self.image_shape = image_shape
         self.loss_fn = nn.CrossEntropyLoss()  # 定义损失函数
 
